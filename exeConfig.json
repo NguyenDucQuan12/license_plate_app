@@ -1,0 +1,93 @@
+{
+ "version": "auto-py-to-exe-configuration_v1",
+ "pyinstallerOptions": [
+  {
+   "optionDest": "noconfirm",
+   "value": true
+  },
+  {
+   "optionDest": "filenames",
+   "value": "C:/Users/81908/Documents/GitHub/license_plate_app/src/main.py"
+  },
+  {
+   "optionDest": "onefile",
+   "value": true
+  },
+  {
+   "optionDest": "console",
+   "value": true
+  },
+  {
+   "optionDest": "clean_build",
+   "value": false
+  },
+  {
+   "optionDest": "strip",
+   "value": false
+  },
+  {
+   "optionDest": "noupx",
+   "value": false
+  },
+  {
+   "optionDest": "disable_windowed_traceback",
+   "value": false
+  },
+  {
+   "optionDest": "uac_admin",
+   "value": false
+  },
+  {
+   "optionDest": "uac_uiaccess",
+   "value": false
+  },
+  {
+   "optionDest": "argv_emulation",
+   "value": false
+  },
+  {
+   "optionDest": "bootloader_ignore_signals",
+   "value": false
+  },
+  {
+   "optionDest": "datas",
+   "value": "C:/Users/81908/Documents/GitHub/license_plate_app/src/demo;demo/"
+  },
+  {
+   "optionDest": "datas",
+   "value": "C:/Users/81908/Documents/GitHub/license_plate_app/src/image;image/"
+  },
+  {
+   "optionDest": "datas",
+   "value": "C:/Users/81908/Documents/GitHub/license_plate_app/src/model;model/"
+  },
+  {
+   "optionDest": "hiddenimports",
+   "value": "imghdr"
+  },
+  {
+   "optionDest": "hiddenimports",
+   "value": "imgaug"
+  },
+  {
+   "optionDest": "hiddenimports",
+   "value": "pyclipper"
+  },
+  {
+   "optionDest": "collect_data",
+   "value": "paddle"
+  },
+  {
+   "optionDest": "collect_all",
+   "value": "paddleocr"
+  },
+  {
+   "optionDest": "collect_data",
+   "value": "ultralytics"
+  }
+ ],
+ "nonPyinstallerOptions": {
+  "increaseRecursionLimit": true,
+  "manualArguments": ""
+ }
+}
