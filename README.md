@@ -6,7 +6,7 @@ Then put in `demo folder`
 If you want to use your camera as input then change the following `main.py`:  
 ![image](https://github.com/NguyenDucQuan12/license_plate_app/assets/68120446/b6b62f5a-7236-4b83-97e3-e5b40657c969)  
 
-Then when you launch the main file, a window will appear where you can enter the device you want as input *(0-99: your webcacme, or rtsp : IP Camera)*
+Then when you launch the main file, a window will appear where you can enter the device you want as input *(0-99: your webcacme, or rtsp : IP Camera)*  
 ![image](https://github.com/NguyenDucQuan12/license_plate_app/assets/68120446/d4dbd0c2-7f5e-4974-bd1c-7e613c7f11b3)
 
 ## Second
