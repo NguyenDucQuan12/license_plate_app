@@ -10,9 +10,6 @@ import PIL.Image, PIL.ImageTk
 from tkGUI import make_gui_infor
 from tkButton import make_gui_btn
 
-
-
-
 class App:
     def __init__(self, window, title, sources):
 
@@ -33,10 +30,10 @@ class App:
         self.window.rowconfigure(2,weight=1, uniform="a")
         
            
-        Cam1 = tkCamera(self.window, 0, 0, width, height, sources, text= "Cam toàn cảnh", source= sources[0][1])
+        Cam1 = tkCamera(self.window, 0, 0, width, height, sources, text= "Cam toàn cảnh", source= "demo/demo.mp4")
         self.stream_widgets.append(Cam1)
         
-        Cam2 = tkCamera(self.window, 0, 1, width, height, sources, text= "Cam biển số", source= sources[1][1])
+        Cam2 = tkCamera(self.window, 0, 1, width, height, sources, text= "Cam biển số", source= "demo/demo.mp4")
         self.stream_widgets.append(Cam2)
         
         IN_frame = make_gui_infor(self.window, row = 1, column = 0, text = "Thông tin lúc vào", image = self.simple_image, IN= True)   
@@ -47,8 +44,6 @@ class App:
         self.window.mainloop()
     
     def on_closing(self, event=None):
-        """TODO: add docstring"""
-
         # print("[App] stoping threads")
         #self.my_DB.cleanup_before_exit()
         for widget in self.stream_widgets:

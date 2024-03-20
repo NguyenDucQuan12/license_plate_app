@@ -42,7 +42,7 @@ class make_gui_btn():
         self.btn_manual = self.create_btn(self.frame_button_bottom, text="sau nay", function=msg_future_feature)
         logo = ImageLabel(self.frame_button_bottom)
         logo.pack(anchor='center', side='left', fill='both')
-        logo.load("image\img_src\VN.gif")
+        logo.load("image/img_src/VN.gif")
         self.btn_snapshot = self.create_btn(self.frame_button_bottom, text=btn_snapshort, function=self.snapshot_new)
         self.btn_Source = self.create_btn(self.frame_button_bottom, text=source, function=msg_future_feature)
         self.btn_manual = self.create_btn(self.frame_button_bottom, text=manual_check, function=self.manual_check)
@@ -178,12 +178,6 @@ class make_gui_btn():
         if self.IS_quick_view:
             self.quick_view.IN_success(self.now, self.id_card, self.license_plate)
         
-        # Ghi dữ liệu vào CSDL
-        in_background= save_image_background(success=True, frame= self.Cam1.origin_frame())
-        in_license = save_image_license(success= True, frame=self.Cam2.origin_frame())
-        self.my_DB.info_insert_IN_onetime(self.id_card, self.now, self.license_plate, status="IN",result= "OK", lane=1, time_out= 0,
-                                          in_background= in_background, in_license = in_license, in_license_plate = self.license_plate_path)
-        
         # Label chứa thời gian vào, id lúc vào, mã nhân viên, họ tên nhân viên
         self.IN_frame.Time_label_IN.config( text=self.today)
         self.IN_frame.ID_label_IN.config( text= self.id_card)
@@ -197,6 +191,12 @@ class make_gui_btn():
         
         self.IN_frame.image_license_plate_canvas_IN.itemconfig(self.IN_frame.image_on_canvas_IN, image=self.photo_IN)
         self.IN_frame.text_license_plate_canvas_IN.itemconfig(self.IN_frame.text_on_canvas_IN, text=self.license_plate)
+        
+        # Ghi dữ liệu vào CSDL
+        in_background= save_image_background(success=True, frame= self.Cam1.origin_frame())
+        in_license = save_image_license(success= True, frame=self.Cam2.origin_frame())
+        self.my_DB.info_insert_IN_onetime(self.id_card, self.now, self.license_plate, status="IN",result= "OK", lane=1, time_out= 0,
+                                          in_background= in_background, in_license = in_license, in_license_plate = self.license_plate_path)
     
     # Lấy thông tin lúc vào để đưa lên màn hình     
     def get_info_IN_success(self):
@@ -224,12 +224,6 @@ class make_gui_btn():
         self.result_canvas.configure(bg=red_color)
         self.result_canvas.itemconfig(self.text_result_canvas, text=toast_do_again)
         
-        # Ghi dữ liệu vào CSDL
-        in_background= save_image_background(success=False, frame= self.Cam1.origin_frame())
-        in_license = save_image_license(success= False, frame=self.Cam2.origin_frame())
-        self.my_DB.info_insert(self.id_card, self.now, self.license_plate, status='IN', result='REFUSE',lane=1, time_out=0,
-                               in_background=in_background, in_license= in_license, in_license_plate=self.license_plate_path) 
-        
         # Label chứa thời gian vào, id lúc vào, mã nhân viên, họ tên nhân viên
         self.IN_frame.Time_label_IN.config( text=self.today)
         self.IN_frame.ID_label_IN.config( text= self.id_card)
@@ -243,14 +237,17 @@ class make_gui_btn():
         
         self.IN_frame.image_license_plate_canvas_IN.itemconfig(self.IN_frame.image_on_canvas_IN, image=self.photo_IN)  # ảnh hiển thị lỗi
         self.IN_frame.text_license_plate_canvas_IN.itemconfig(self.IN_frame.text_on_canvas_IN, text=self.license_plate) # text : Không đọc được biển số
+        
+        # Ghi dữ liệu vào CSDL
+        in_background= save_image_background(success=False, frame= self.Cam1.origin_frame())
+        in_license = save_image_license(success= False, frame=self.Cam2.origin_frame())
+        self.my_DB.info_insert(self.id_card, self.now, self.license_plate, status='IN', result='REFUSE',lane=1, time_out=0,
+                               in_background=in_background, in_license= in_license, in_license_plate=self.license_plate_path) 
     
     # Khi quẹt hẻ ra thành công
     def setup_OUT_success(self):
         
-        # Lấy dữ liệu lúc vào và so sánh (đi vào, thời gian gần đây nhất, tình trạng là IN, chưa IN/DONE, và hợp lệ )
-        reults_compare, mess = self.my_DB.select_and_compare(self.id_card, self.license_plate) # True hoặc false
-        
-        # Label chứa thời gian, id card, mã nhân viên, họ tên lúc vào
+        # Label chứa thời gian, id card, mã nhân viên, họ tên lúc ra
         self.OUT_frame.Time_label_OUT.config( text=self.today)
         self.OUT_frame.ID_label_OUT.config( text= self.id_card)
         
@@ -264,6 +261,9 @@ class make_gui_btn():
         self.OUT_frame.image_license_plate_canvas_OUT.itemconfig(self.OUT_frame.image_on_canvas_OUT, image=self.photo_OUT)
         
         self.OUT_frame.text_license_plate_canvas_OUT.itemconfig(self.OUT_frame.text_on_canvas_OUT, text=self.license_plate)
+        
+        # Lấy dữ liệu lúc vào và so sánh (đi vào, thời gian gần đây nhất, tình trạng là IN, chưa IN/DONE, và hợp lệ )
+        reults_compare, mess = self.my_DB.select_and_compare(self.id_card, self.license_plate) # True hoặc false
         
         if reults_compare:
             out_background= save_image_background(success=True, frame= self.Cam2.origin_frame())
@@ -294,13 +294,6 @@ class make_gui_btn():
         # Canvas chứa kết quả so sánh
         self.result_canvas.configure(bg=red_color)
         self.result_canvas.itemconfig(self.text_result_canvas, text="Quẹt thẻ lại") 
-            
-        # Ghi dữ liệu vào CSDL
-        out_background= save_image_background(success=False, frame= self.Cam2.origin_frame())
-        
-        out_license = save_image_license(success= False, frame=self.Cam1.origin_frame())
-        self.my_DB.info_insert(self.id_card, time_in=0, license_plate= self.license_plate, status='OUT', result='REFUSE', lane=1,
-                               time_out=self.now, out_background=out_background, out_license=out_license, out_license_plate=self.license_plate_path) 
         
         # Label chứa thời gian vào, id lúc vào, mã nhân viên, họ tên nhân viên
         self.OUT_frame.Time_label_OUT.config( text=self.today)
@@ -315,6 +308,13 @@ class make_gui_btn():
         
         self.OUT_frame.image_license_plate_canvas_OUT.itemconfig(self.OUT_frame.image_on_canvas_OUT, image=self.photo_OUT)
         self.OUT_frame.text_license_plate_canvas_OUT.itemconfig(self.OUT_frame.text_on_canvas_OUT, text=self.license_plate_path)
+        
+        # Ghi dữ liệu vào CSDL
+        out_background= save_image_background(success=False, frame= self.Cam2.origin_frame())
+        out_license = save_image_license(success= False, frame=self.Cam1.origin_frame())
+        
+        self.my_DB.info_insert(self.id_card, time_in=0, license_plate= self.license_plate, status='OUT', result='REFUSE', lane=1,
+                               time_out=self.now, out_background=out_background, out_license=out_license, out_license_plate=self.license_plate_path) 
     
     # Button khi nhấn nút quẹt thẻ  
     def get_license(self):
@@ -332,7 +332,6 @@ class make_gui_btn():
                 self.setup_IN_success()
             else:
                 self.setup_IN_fail()
-                
         # Nếu là đi ra     
         else:
             image_get_license = self.Cam1.origin_frame()

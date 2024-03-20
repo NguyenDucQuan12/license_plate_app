@@ -5,8 +5,9 @@ from contextlib import contextmanager
 import sys
 import datetime
 from VN_language import *
+import traceback
 
-server = '172.31.99.36,1434'
+server = '172.31.99.36,1434'  # change your server, database, username, password database and your driver ODBC
 database = 'License_Plate_DB'
 username = 'DucQuanLP'
 password = '123456789'
@@ -29,17 +30,17 @@ class my_sql_server_DB():
                 self.connection = pyodbc.connect(connection_string)
                 self.cursor = self.connection.cursor()
             except Exception as e:
-                pass # nhớ edit lại, ghi log
-                # print(traceback.format_exc())
+                #pass # nhớ edit lại, ghi log
+                print(traceback.format_exc())
             finally:
                 if self.connection:
-                    # print(connected_DB)
+                    print(connected_DB)
                     return True
                 else:
-                    pass
-                    # print(error_connect_DB + str(attemptNumber))
+                    
+                    print(error_connect_DB + str(attemptNumber))
                 time.sleep(self.waitBetweenAttemptsSeconds)
-        # print(not_connect_DB)
+        print(not_connect_DB)
         return False
 
     def cleanup_before_exit(self):
@@ -67,7 +68,7 @@ class my_sql_server_DB():
             error= err.args[0]
             sys.stderr.write(str(error))
             self.cursor.execute("ROLLBACK") 
-            # print("đã rollback ở ngoại lệ")
+            print("đã rollback ở ngoại lệ")
             raise err
 
         finally:
