@@ -3,8 +3,11 @@
 You need to download the following video and rename it to: `demo`.  
 Link to download [Here](https://www.youtube.com/watch?v=o4bRh9zzJaU)  
 Then put in `demo folder`  
-If you want to use your camera as input then change the following `main.py` *0-99: your webcam or rtsp: IP camera*:  
-![image](https://github.com/NguyenDucQuan12/license_plate_app/assets/68120446/b6b62f5a-7236-4b83-97e3-e5b40657c969)
+If you want to use your camera as input then change the following `main.py`:  
+![image](https://github.com/NguyenDucQuan12/license_plate_app/assets/68120446/b6b62f5a-7236-4b83-97e3-e5b40657c969)  
+
+Then when you launch the main file, a window will appear where you can enter the device you want as input *(0-99: your webcacme, or rtsp : IP Camera)*
+![image](https://github.com/NguyenDucQuan12/license_plate_app/assets/68120446/d4dbd0c2-7f5e-4974-bd1c-7e613c7f11b3)
 
 ## Second
 Change your server, database, username, password database and your driver ODBC in `license_plate_DB.py`
