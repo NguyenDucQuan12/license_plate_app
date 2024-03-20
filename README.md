@@ -3,8 +3,9 @@
 You need to download the following video and rename it to: `demo`.  
 Link to download [Here](https://www.youtube.com/watch?v=o4bRh9zzJaU)  
 Then put in `demo folder`  
-If you want to use your camera as input then change the following:  
-<img src="https://imgur.com/a/VN9hU6F">
+If you want to use your camera as input then change the following `main.py`:  
+![image](https://github.com/NguyenDucQuan12/license_plate_app/assets/68120446/b6b62f5a-7236-4b83-97e3-e5b40657c969)
+
 ## Second
 change your server, database, username, password database and your driver ODBC in `license_plate_DB.py`
 *If you don't have an account or don't want to log in, it will take about 15 seconds to start the software because it can't connect to the database.*
